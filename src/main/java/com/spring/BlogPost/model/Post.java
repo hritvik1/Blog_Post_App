@@ -21,6 +21,9 @@ public class Post {
     @Column(name = "date")
     private Date date;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
     public Integer getId() {
         return id;
     }
