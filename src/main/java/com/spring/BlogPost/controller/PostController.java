@@ -5,11 +5,9 @@ import com.spring.BlogPost.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 import java.util.Date;
 
@@ -38,8 +36,8 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/deletepost/{postId}")
-    public String deletePost(@PathVariable Integer postId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deletepost")
+    public String deletePost(@RequestParam(name = "postId") Integer postId) {
         postService.deletePost(postId);
         return "redirect:/posts";
     }
