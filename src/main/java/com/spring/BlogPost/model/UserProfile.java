@@ -12,7 +12,7 @@ public class UserProfile {
     private Integer id;
 
     @Column(name = "full_name")
-    private String fullname;
+    private String fullName;
 
     @Column(name = "email_address")
     private String email;
@@ -34,12 +34,12 @@ public class UserProfile {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

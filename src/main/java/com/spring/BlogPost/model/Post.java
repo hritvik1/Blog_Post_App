@@ -1,7 +1,9 @@
 package com.spring.BlogPost.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -23,6 +25,9 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Category> categories = new ArrayList<>();
 
     public Integer getId() {
         return id;

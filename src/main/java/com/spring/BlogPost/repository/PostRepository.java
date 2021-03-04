@@ -8,10 +8,6 @@ import java.util.List;
 @Repository
 public class PostRepository {
 
-    PostRepository() {
-        System.out.println("****  Post Repository ****");
-    }
-
     @PersistenceUnit(unitName = "techblog")
     private EntityManagerFactory entityManagerFactory;
 
