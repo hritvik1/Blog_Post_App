@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head th:fragment="site-head"></head>
+    <head th:fragment="site-head">
+        <style>
+            #edit {
+                text-decoration: none;
+                color: black;
+            }
+        </style>
+    </head>
     <body>
         <header th:fragment="logged-out" th:remove="tag">
             <header>
@@ -10,7 +17,7 @@
         </header>
         <header th:fragment="logged-in" th:remove="tag">
             <header>
-                <a href="posts/create.html" th:href="@{/posts/newpost}">Create Post</a>
+                <button><a id="edit" href="posts/create.html" th:href="@{/posts/newpost}">Create Post</a></button><br><br>
                 <form method="post" th:action="@{/users/logout}">
                     <input type="submit" value="Logout" />
                 </form>

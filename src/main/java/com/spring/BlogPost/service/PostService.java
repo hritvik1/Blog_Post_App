@@ -12,8 +12,8 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public List<Post> getAllPosts() {
-        return postRepository.getAllPosts();
+    public List<Post> getAllPosts(Integer userId) {
+        return postRepository.getAllPosts(userId);
     }
 
     public void createPost(Post newPost) {
@@ -22,5 +22,13 @@ public class PostService {
 
     public void deletePost(Integer postId) {
         postRepository.deletePost(postId);
+    }
+
+    public Post getPost(Integer postId) {
+        return postRepository.getPost(postId);
+    }
+
+    public void updatePost(Post updatedPost) {
+        postRepository.updatePost(updatedPost);
     }
 }

@@ -2,6 +2,12 @@
 <html xmlns:th="http://thymeleaf.org">
     <head th:replace="layout :: site-head">
         <title>BlogPostApp - User Posts</title>
+        <style>
+            #edit {
+                text-decoration: none;
+                color: black;
+            }
+        </style>
     </head>
     <body>
         <header th:replace="layout :: logged-in"></header>
@@ -12,6 +18,8 @@
                 <i>Posted On: </i> <span th:text="${p.date}"></span>
                 <div><p th:text="${p.body}"></p></div>
                 <div>
+                    <button><a id="edit" th:href="@{/editpost(postId=${p.id})}">Edit</a></button><br><br>
+
                     <form th:action="@{/deletepost(postId=${p.id})}" th:method="delete">
                         <input type="submit" value="Delete" />
                     </form>

@@ -11,9 +11,10 @@ public class PostRepository {
     @PersistenceUnit(unitName = "techblog")
     private EntityManagerFactory entityManagerFactory;
 
-    public List<Post> getAllPosts() {
+    public List<Post> getAllPosts(Integer userId) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<Post> query = entityManager.createQuery("SELECT p from Post p", Post.class);
+        TypedQuery<Post> query = entityManager.createQuery("SELECT p from Post p join fetch p.user pUser where pUser.id = :userId", Post.class);
+        query.setParameter("userId", userId);
         List<Post> result = query.getResultList();
         return result;
     }
@@ -42,6 +43,25 @@ public class PostRepository {
             transaction.commit();
         }
         catch (Exception e) {
+            System.out.println(e);
+            transaction.rollback();
+        }
+    }
+
+    public Post getPost(Integer postId) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.find(Post.class, postId);
+    }
+
+    public void updatePost(Post updatedPost) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.merge(updatedPost);
+            transaction.commit();
+        }
+        catch(Exception e) {
             System.out.println(e);
             transaction.rollback();
         }
