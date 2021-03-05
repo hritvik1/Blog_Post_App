@@ -3,10 +3,7 @@ package com.spring.BlogPost.repository;
 import com.spring.BlogPost.model.User;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.*;
 
 @Repository
 public class UserRepository {
@@ -25,6 +22,20 @@ public class UserRepository {
         catch(Exception e) {
             System.out.println(e);
             transaction.rollback();
+        }
+    }
+
+    public User checkCredentials(String username, String password) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            TypedQuery<User> query = entityManager.createQuery("select u from User u where u.username = :username and u.password = :password", User.class);
+            query.setParameter("username", username);
+            query.setParameter("password", password);
+            return query.getSingleResult();
+        }
+        catch (NoResultException e) {
+            System.out.println(e);
+            return null;
         }
     }
 }

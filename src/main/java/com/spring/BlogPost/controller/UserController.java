@@ -24,11 +24,14 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/users/login")
     public String loginUser(User user) {
-        if(userService.login(user)) {
-            return "redirect:/posts";
+        User existingUser = userService.login(user);
+        if(existingUser == null) {
+            System.out.println("User Doesn't Exist!!!");
+            return "users/login";
         }
         else {
-            return "users/login";
+            System.out.println("User Found!!!");
+            return "redirect:/posts";
         }
     }
 
@@ -38,7 +41,6 @@ public class UserController {
         UserProfile userProfile = new UserProfile();
         user.setUserProfile(userProfile);
         model.addAttribute("user", user);
-
         return "users/registration";
     }
 
