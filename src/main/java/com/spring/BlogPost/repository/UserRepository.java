@@ -2,7 +2,6 @@ package com.spring.BlogPost.repository;
 
 import com.spring.BlogPost.model.User;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.*;
 
 @Repository
