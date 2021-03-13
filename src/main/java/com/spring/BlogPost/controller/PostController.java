@@ -48,7 +48,7 @@ public class PostController {
         return "posts/edit";
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/editpost")
+    @RequestMapping(method = RequestMethod.PUT,  value = "/editpost")
     public String editPostSubmit(@RequestParam(name = "postId") Integer postId, Post updatedPost, HttpSession session) {
         updatedPost.setId(postId);
         User user = (User) session.getAttribute("LoggedUser");
